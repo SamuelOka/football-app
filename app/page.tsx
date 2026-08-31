@@ -1,6 +1,7 @@
 import { DivideCircleIcon } from "lucide-react";
 import { liveFixtures } from "./data/data";
 import Link from "next/link";
+import ListLeagues from "./ui/ListLeagues";
 
 export default async function Home() {
   return (
@@ -8,39 +9,45 @@ export default async function Home() {
       <div className="py-2 px-4 rounded-[5px] bg-red-500 text-white w-fit my-4">
         live
       </div>
-      <div className="w-full">
-        {liveFixtures.response.map((fixture: any) => (
-          <div key={fixture.fixture.id}>
-            <div className="flex justify-between items-center w-full py-2 ">
-              <div className="flex flex-col items-start gap-4">
-                <div className="flex items-center gap-2">
-                  <img
-                    src={fixture.teams.home.logo}
-                    className="w-6 h-6"
-                    alt={fixture.teams.home.name}
-                  />
-                  <h2>{fixture.teams.home.name}</h2>
+      <div className="w-full md:grid  md:grid-cols-3 ">
+        <div className="hidden md:block grid-span-1">
+          <ListLeagues />
+        </div>
+        <div className="md:col-span-2">
+          {" "}
+          {liveFixtures.response.map((fixture: any) => (
+            <div key={fixture.fixture.id}>
+              <div className="flex justify-between items-center w-full py-2 ">
+                <div className="flex flex-col items-start gap-4">
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={fixture.teams.home.logo}
+                      className="w-6 h-6"
+                      alt={fixture.teams.home.name}
+                    />
+                    <h2>{fixture.teams.home.name}</h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <img
+                      className="w-6 h-6"
+                      src={fixture.teams.away.logo}
+                      alt={fixture.teams.away.name}
+                    />
+                    <h2>{fixture.teams.away.name}</h2>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <img
-                    className="w-6 h-6"
-                    src={fixture.teams.away.logo}
-                    alt={fixture.teams.away.name}
-                  />
-                  <h2>{fixture.teams.away.name}</h2>
+                <div className="text-right ">
+                  <p> {fixture.goals.home}</p>
+                  <p className="mr-2 text-red-500">
+                    {fixture.fixture.status.elapsed}`
+                  </p>
+                  <p> {fixture.goals.away} </p>
                 </div>
               </div>
-              <div className="text-right ">
-                <p> {fixture.goals.home}</p>
-                <p className="mr-2 text-red-500">
-                  {fixture.fixture.status.elapsed}`
-                </p>
-                <p> {fixture.goals.away} </p>
-              </div>
+              <hr className="text-gray-800" />
             </div>
-            <hr className="text-gray-800" />
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* {liveFixturesR.matches.map((match: any) => (
           <Link href={`/fulldetails/${match.id}`} key={match.id}>

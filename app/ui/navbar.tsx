@@ -1,9 +1,10 @@
 "use client";
 import { Menu, Pin } from "lucide-react";
 import React, { useState } from "react";
-import { leagueData } from "../data/data";
+
 import Image from "next/image";
 import Link from "next/link";
+import ListLeagues from "./ListLeagues";
 
 export default function Navbar() {
   const [openNavbar, setopenNavbar] = useState(false);
@@ -40,20 +41,7 @@ export default function Navbar() {
           </div>
           <hr className="text-neutral-700 mt-4" />
 
-          <ul className=" py-4 ">
-            {Object.values(leagueData.response)
-              .slice(0, 20)
-              .map((l: any) => (
-                <li className="mb-3 flex items-center" key={l.league.id}>
-                  <img
-                    src={l.league.logo}
-                    alt={l.league.name}
-                    className="w-8 h-8 mr-2"
-                  />
-                  {l.league.name}
-                </li>
-              ))}
-          </ul>
+          <ListLeagues />
         </div>
       </div>
     </div>
