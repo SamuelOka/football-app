@@ -2,7 +2,7 @@ import { leagueData } from "../data/data";
 
 export default function ListLeagues() {
   return (
-    <ul className=" py-4 ">
+    <ul className=" py-4  ">
       {Object.values(leagueData.response)
         .slice(0, 20)
         .map((l: any) => (

@@ -1,5 +1,5 @@
 "use client";
-import { Menu, Pin } from "lucide-react";
+import { Menu, Pin, X } from "lucide-react";
 import React, { useState } from "react";
 
 import Image from "next/image";
@@ -21,8 +21,7 @@ export default function Navbar() {
           onClick={() => setopenNavbar(!openNavbar)}
           className="block md:hidden p-2 bg-gray-950 rounded-[10px] w-fit hover:bg-black duration-300  "
         >
-          {" "}
-          <Menu />
+          {openNavbar ? <X /> : <Menu />}
         </div>
       </div>
 

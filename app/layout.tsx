@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Graduate, Tourney } from "next/font/google";
 import "./globals.css";
 import Navbar from "./ui/navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const tourney = Tourney({
+  weight: "400",
+  variable: "--font-tourney",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const graduate = Graduate({
+  weight: "400",
+  variable: "--font-graduate",
   subsets: ["latin"],
 });
 
@@ -22,7 +24,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased `}
+      className={`${tourney.variable} ${graduate.variable} h-full antialiased `}
     >
       <body className="min-h-full flex flex-col ">
         <Navbar />
