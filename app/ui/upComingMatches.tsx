@@ -1,35 +1,57 @@
-import { UpcomingFixtures } from "../data/data";
+import { ArrowBigDownDashIcon, ChevronDown } from "lucide-react";
+import {
+  UpcomingFixtures,
+  UpcomingMatcheLiga,
+  UpcomingMatchePL,
+  UpcomingMatcheSerieA,
+} from "../data/data";
 
 export default async function UpcomingMatches() {
+  console.log(UpcomingMatchePL);
   return (
     <div>
-      {UpcomingFixtures.response.map((fixture: any) => (
-        <div key={fixture.fixture.id}>
+      <Upcoming upcoming={UpcomingMatchePL} />
+      <hr className="text-gray-800 my-10" />
+      <Upcoming upcoming={UpcomingMatcheLiga} />
+      <hr className="text-gray-800 my-10" />
+      <Upcoming upcoming={UpcomingMatcheSerieA} />
+    </div>
+  );
+}
+function Upcoming({ upcoming }: { upcoming: any }) {
+  return (
+    <div>
+      <div className="flex items-center gap-4 mb-8">
+        <img
+          className="w-10 h-10 object-cover"
+          src={upcoming.competition.emblem}
+          alt={upcoming.competition.name}
+        />
+        <ChevronDown />
+      </div>
+      {upcoming.matches.map((fixture: any) => (
+        <div key={fixture.id}>
           <div className="flex justify-between items-center w-full py-2 ">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2">
                 <img
-                  src={fixture.teams.home.logo}
+                  src={fixture.homeTeam.crest}
                   className="w-6 h-6"
-                  alt={fixture.teams.home.name}
+                  alt={fixture.homeTeam.name}
                 />
-                <h2>{fixture.teams.home.name}</h2>
+                <h2>{fixture.homeTeam.name}</h2>
               </div>
               <div className="flex items-center gap-2">
                 <img
                   className="w-6 h-6"
-                  src={fixture.teams.away.logo}
-                  alt={fixture.teams.away.name}
+                  src={fixture.awayTeam.crest}
+                  alt={fixture.awayTeam.name}
                 />
-                <h2>{fixture.teams.away.name}</h2>
+                <h2>{fixture.awayTeam.name}</h2>
               </div>
             </div>
             <div className="text-right ">
-              <p> {fixture.goals.home}</p>
-              <p className="mr-2 text-red-500">
-                {fixture.fixture.status.elapsed}`
-              </p>
-              <p> {fixture.goals.away} </p>
+              <p>{new Date(fixture.utcDate).toDateString()}</p>
             </div>
           </div>
           <hr className="text-gray-800" />

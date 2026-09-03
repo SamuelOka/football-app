@@ -1,6 +1,7 @@
-import { liveFixtures } from "../data/data";
+import { liveFixtures, liveMatches } from "../data/data";
 
 export default async function LiveFixtures() {
+  console.log(liveMatches);
   return (
     <div>
       {liveFixtures.response.map((fixture: any) => (
@@ -10,18 +11,18 @@ export default async function LiveFixtures() {
               <div className="flex items-center gap-2">
                 <img
                   src={fixture.teams.home.logo}
-                  className="w-6 h-6"
+                  className="w-5 h-5 object-cover"
                   alt={fixture.teams.home.name}
                 />
-                <h2>{fixture.teams.home.name}</h2>
+                <h2 className="text-[12px]">{fixture.teams.home.name}</h2>
               </div>
               <div className="flex items-center gap-2">
                 <img
-                  className="w-6 h-6"
+                  className="w-5 h-5 object-cover"
                   src={fixture.teams.away.logo}
                   alt={fixture.teams.away.name}
                 />
-                <h2>{fixture.teams.away.name}</h2>
+                <h2 className="text-[12px]">{fixture.teams.away.name}</h2>
               </div>
             </div>
             <div className="text-right ">
