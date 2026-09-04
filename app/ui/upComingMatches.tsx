@@ -1,34 +1,16 @@
 import { ArrowBigDownDashIcon, ChevronDown } from "lucide-react";
-import {
-  UpcomingFixtures,
-  UpcomingMatcheLiga,
-  UpcomingMatchePL,
-  UpcomingMatcheSerieA,
-} from "../data/data";
 
-export default async function UpcomingMatches() {
-  console.log(UpcomingMatchePL);
+export default function UpcomingMatches({ upcoming }: { upcoming: any }) {
   return (
     <div>
-      <Upcoming upcoming={UpcomingMatchePL} />
-      <hr className="text-gray-800 my-10" />
-      <Upcoming upcoming={UpcomingMatcheLiga} />
-      <hr className="text-gray-800 my-10" />
-      <Upcoming upcoming={UpcomingMatcheSerieA} />
-    </div>
-  );
-}
-function Upcoming({ upcoming }: { upcoming: any }) {
-  return (
-    <div>
-      <div className="flex items-center gap-4 mb-8">
+      {/* <div className="flex items-center gap-4 mb-8">
         <img
           className="w-10 h-10 object-cover"
           src={upcoming.competition.emblem}
           alt={upcoming.competition.name}
         />
         <ChevronDown />
-      </div>
+      </div> */}
       {upcoming.matches.map((fixture: any) => (
         <div key={fixture.id}>
           <div className="flex justify-between items-center w-full py-2 ">
