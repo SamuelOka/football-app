@@ -57,18 +57,32 @@ export async function leagueMatch(dateFrom: string, dateTo: string) {
   }
   return res.json();
 }
-
-export const liveMatches = await fetch(
-  "https://api.football-data.org/v4/matches?",
-  {
-    method: "GET",
-    headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
-  },
-)
-  .then((res) => {
-    return res.json();
-  })
-  .catch((err) => {
-    console.log(err);
-    return null;
-  });
+export async function getLiveMatches(dateFrom: string, dateTo: string) {
+  const res = await fetch(
+    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA&status=SCHEDULED,IN_PLAY,TIMED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+    {
+      method: "GET",
+      headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
+    },
+  );
+  if (!res.ok) {
+    throw new Error(
+      `Failed to fetch live matches for ${dateFrom} to ${dateTo}`,
+    );
+  }
+  return res.json();
+}
+// export const liveMatches = await fetch(
+//   "https://api.football-data.org/v4/matches?",
+//   {
+//     method: "GET",
+//     headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
+//   },
+// )
+//   .then((res) => {
+//     return res.json();
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//     return null;
+//   });

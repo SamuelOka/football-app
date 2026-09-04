@@ -1,36 +1,50 @@
-import { liveFixtures, liveMatches } from "../data/data";
+import { getLiveMatches, liveFixtures } from "../data/data";
 
 export default async function LiveFixtures() {
-  console.log(liveMatches);
+  const today = new Date();
+  today.setDate(today.getDate() + 1);
+  const todayend = new Date(today);
+  todayend.setHours(23, 59, 59, 999);
+  const dateFromToday = today.toISOString().split("T")[0];
+  const dateToToday = todayend.toISOString().split("T")[0];
+  const liveMatches = await getLiveMatches(dateFromToday, dateToToday);
+  console.log("Live Matches:", liveMatches);
   return (
     <div>
-      {liveFixtures.response.map((fixture: any) => (
-        <div key={fixture.fixture.id}>
+      {liveMatches.matches.map((match: any) => (
+        <div key={match.id}>
           <div className="flex justify-between items-center w-full py-2 ">
             <div className="flex flex-col items-start gap-4">
               <div className="flex items-center gap-2">
                 <img
-                  src={fixture.teams.home.logo}
-                  className="w-5 h-5 object-cover"
-                  alt={fixture.teams.home.name}
+                  src={match.homeTeam.crest}
+                  className="w-6 h-6"
+                  alt={match.homeTeam.name}
                 />
-                <h2 className="text-[12px]">{fixture.teams.home.name}</h2>
+                <h2>{match.homeTeam.name}</h2>
               </div>
               <div className="flex items-center gap-2">
                 <img
-                  className="w-5 h-5 object-cover"
-                  src={fixture.teams.away.logo}
-                  alt={fixture.teams.away.name}
+                  className="w-6 h-6"
+                  src={match.awayTeam.crest}
+                  alt={match.awayTeam.name}
                 />
-                <h2 className="text-[12px]">{fixture.teams.away.name}</h2>
+                <h2>{match.awayTeam.name}</h2>
               </div>
             </div>
             <div className="text-right ">
-              <p> {fixture.goals.home}</p>
-              <p className="mr-2 text-red-500">
-                {fixture.fixture.status.elapsed}`
-              </p>
-              <p> {fixture.goals.away} </p>
+              {match.status === "TIMED" ? (
+                <p>
+                  {new Date(match.utcDate).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </p>
+              ) : match.status === "IN_PLAY" ? (
+                <div>
+                  <p>in play</p>
+                </div>
+              ) : null}
             </div>
           </div>
           <hr className="text-gray-800" />
