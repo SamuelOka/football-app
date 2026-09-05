@@ -7,7 +7,7 @@ import UpcomingMatches from "./ui/upComingMatches";
 
 export default async function Home() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
+
   today.setDate(today.getDate());
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 2);

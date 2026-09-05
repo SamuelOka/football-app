@@ -2,7 +2,6 @@ import { getLiveMatches, liveFixtures } from "../data/data";
 
 export default async function LiveFixtures() {
   const today = new Date();
-  today.setHours(0, 0, 0, 0);
   today.setDate(today.getDate() + 1);
   const todayend = new Date(today);
   todayend.setHours(23, 59, 59, 999);
