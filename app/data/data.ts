@@ -50,6 +50,7 @@ export async function leagueMatch(dateFrom: string, dateTo: string) {
     {
       method: "GET",
       headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
+      cache: "no-store",
     },
   );
   if (!res.ok) {
