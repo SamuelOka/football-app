@@ -10,7 +10,7 @@ export default async function Home() {
   today.setHours(0, 0, 0, 0);
   today.setDate(today.getDate());
   const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 7);
+  tomorrow.setDate(today.getDate() + 2);
   const tomorrowend = new Date(tomorrow);
   tomorrowend.setHours(23, 59, 59, 999);
   const dateFromTomorrow = tomorrow.toISOString().split("T")[0];
