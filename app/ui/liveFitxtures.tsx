@@ -21,6 +21,7 @@ export default async function LiveFixtures() {
                   src={match.homeTeam.crest}
                   className="w-6 h-6"
                   alt={match.homeTeam.name}
+                  loading="lazy"
                 />
                 <h2>{match.homeTeam.name}</h2>
               </div>
@@ -29,6 +30,7 @@ export default async function LiveFixtures() {
                   className="w-6 h-6"
                   src={match.awayTeam.crest}
                   alt={match.awayTeam.name}
+                  loading="lazy"
                 />
                 <h2>{match.awayTeam.name}</h2>
               </div>

@@ -20,6 +20,7 @@ export default function UpcomingMatches({ upcoming }: { upcoming: any }) {
                   src={fixture.homeTeam.crest}
                   className="w-6 h-6"
                   alt={fixture.homeTeam.name}
+                  loading="lazy"
                 />
                 <h2>{fixture.homeTeam.name}</h2>
               </div>
@@ -28,6 +29,7 @@ export default function UpcomingMatches({ upcoming }: { upcoming: any }) {
                   className="w-6 h-6"
                   src={fixture.awayTeam.crest}
                   alt={fixture.awayTeam.name}
+                  loading="lazy"
                 />
                 <h2>{fixture.awayTeam.name}</h2>
               </div>
