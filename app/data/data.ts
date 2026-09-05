@@ -59,7 +59,7 @@ export async function leagueMatch(dateFrom: string, dateTo: string) {
 }
 export async function getLiveMatches(dateFrom: string, dateTo: string) {
   const res = await fetch(
-    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA&status=SCHEDULED,LIVE,TIMED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA&status=LIVE,SCHEDULED,FINISHED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
     {
       method: "GET",
       headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
