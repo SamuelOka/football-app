@@ -40,7 +40,7 @@ export default async function LiveFixtures() {
                     minute: "2-digit",
                   })}
                 </p>
-              ) : match.status === "IN_PLAY" ? (
+              ) : match.status === "LIVE" ? (
                 <div>
                   <p>in play</p>
                 </div>
