@@ -8,16 +8,16 @@ import UpcomingMatches from "./ui/upComingMatches";
 export default async function Home() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  today.setDate(today.getDate() - 3);
+  today.setDate(today.getDate() + 1);
   const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() - 3);
+  tomorrow.setDate(today.getDate() + 1);
   const tomorrowend = new Date(tomorrow);
-  tomorrowend.setDate(tomorrow.getDate() - 3);
+  tomorrowend.setDate(tomorrow.getDate() + 1);
   const dateFromTomorrow = tomorrow.toISOString().split("T")[0];
   const dateToTomorrow = tomorrowend.toISOString().split("T")[0];
 
   const oneWeek = new Date(today);
-  oneWeek.setDate(today.getDate() + 3);
+  oneWeek.setDate(today.getDate() + 7);
   const dateFrom1week = today.toISOString().split("T")[0];
   const dateTo1week = oneWeek.toISOString().split("T")[0];
 
