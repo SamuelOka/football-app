@@ -50,12 +50,6 @@ export default async function Home() {
           <ListLeagues />
         </div>
         <div className="md:col-span-4 md:mr-28">
-          <p>
-            {dateFrom1week} : {dateTo1week} one week
-          </p>
-          <p>
-            {dateFromTomorrow} : {dateToTomorrow} tomorrow
-          </p>
           <FilterDisplay
             todayMatches={<LiveFixtures />}
             tomorrowMatches={renderMatches(MatchesTomorrow, "tomorrow")}

@@ -12,9 +12,6 @@ export default async function LiveFixtures() {
   console.log("Live Matches:", liveMatches);
   return (
     <div>
-      <p>
-        {dateFromToday} : {dateToToday}
-      </p>
       {liveMatches && liveMatches.matches.length === 0 ? (
         <div>No live today</div>
       ) : (
