@@ -12,12 +12,15 @@ export default async function LiveFixtures() {
   console.log("Live Matches:", liveMatches);
   return (
     <div>
-      {liveMatches && liveMatches.matches.length === 0 ? (
+      {!liveMatches ? (
         <div>No live today</div>
       ) : (
         <div>
           {liveMatches.matches.map((match: any) => (
             <div key={match.id}>
+              <p>
+                {dateFromToday} : {dateToToday}
+              </p>
               <div className="flex justify-between items-center w-full py-2 ">
                 <div className="flex flex-col items-start gap-4">
                   <div className="flex items-center gap-2">
