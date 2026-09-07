@@ -3,8 +3,9 @@ import { getLiveMatches, liveFixtures } from "../data/data";
 export default async function LiveFixtures() {
   const today = new Date();
   today.setDate(today.getDate() + 1);
+  today.setHours(0, 0, 0, 0);
   const todayend = new Date(today);
-  todayend.setHours(23, 59, 59, 999);
+  todayend.setDate(today.getDate() + 1);
   const dateFromToday = today.toISOString().split("T")[0];
   const dateToToday = todayend.toISOString().split("T")[0];
   const liveMatches = await getLiveMatches(dateFromToday, dateToToday);
