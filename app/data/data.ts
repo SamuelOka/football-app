@@ -46,7 +46,7 @@ export const UpcomingFixtures = await fetch(
 
 export async function leagueMatch(dateFrom: string, dateTo: string) {
   const res = await fetch(
-    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA&status=SCHEDULED,TIMED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
+    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA,CL&status=SCHEDULED,TIMED,LIVE,FINISHED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
     {
       method: "GET",
       headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
@@ -58,22 +58,20 @@ export async function leagueMatch(dateFrom: string, dateTo: string) {
   }
   return res.json();
 }
-export async function getLiveMatches(dateFrom: string, dateTo: string) {
-  const res = await fetch(
-    `https://api.football-data.org/v4/matches?competitions=PL,PD,SA&status=LIVE,SCHEDULED,FINISHED,TIMED&dateFrom=${dateFrom}&dateTo=${dateTo}`,
-    {
-      method: "GET",
-      headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
-      cache: "no-store",
-    },
-  );
-  if (!res.ok) {
-    throw new Error(
-      `Failed to fetch live matches for ${dateFrom} to ${dateTo}`,
-    );
-  }
-  return res.json();
-}
+
+export const leagues = await fetch(
+  `https://api.football-data.org/v4/competitions/`,
+  {
+    method: "GET",
+    headers: { "X-Auth-Token": "613ed7ef76db40c199c0ec39994b92f1" },
+  },
+)
+  .then((res) => res.json())
+  .catch((err) => {
+    console.log(err);
+    return null;
+  });
+
 // export const liveMatches = await fetch(
 //   "https://api.football-data.org/v4/matches?",
 //   {

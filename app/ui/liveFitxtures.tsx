@@ -1,4 +1,4 @@
-import { getLiveMatches, liveFixtures } from "../data/data";
+import { leagueMatch, liveFixtures } from "../data/data";
 
 export default async function LiveFixtures() {
   const today = new Date();
@@ -8,7 +8,7 @@ export default async function LiveFixtures() {
   todayend.setDate(today.getDate() + 1);
   const dateFromToday = today.toISOString().split("T")[0];
   const dateToToday = todayend.toISOString().split("T")[0];
-  const liveMatches = await getLiveMatches(dateFromToday, dateToToday);
+  const liveMatches = await leagueMatch(dateFromToday, dateToToday);
   console.log("Live Matches:", liveMatches);
   return (
     <div>
