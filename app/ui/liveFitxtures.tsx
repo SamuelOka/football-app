@@ -50,11 +50,11 @@ function renderMatches(data: any, label: string) {
     return <div>Unable to load matches</div>;
   }
   if (data.matches.length === 0) {
-    return <div>No matches in {label}</div>;
+    return <div></div>;
   } else {
     return (
       <div>
-        <div className="flex items-center gap-4 mb-8 mt-4 bg-neutral-300 p-3 rounded-2xl">
+        <div className="flex items-center gap-4 mb-8 mt-4 bg-neutral-300 p-3 w-full">
           <img
             className="w-15 h-15 object-cover"
             src={data.matches[0]?.competition.emblem}
@@ -62,7 +62,9 @@ function renderMatches(data: any, label: string) {
           />
           <ChevronDown />
         </div>
-        <LiveMatch livematches={data} />
+        <div className="m-5">
+          <LiveMatch livematches={data} />
+        </div>
       </div>
     );
   }

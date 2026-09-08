@@ -37,7 +37,7 @@ export default function FilterDisplay({
           <h1>Up coming</h1>
         </div>
       </div>
-      <div className="md:col-span-4 md:mr-28 bg-gray-950 p-5 rounded-[5px] my-4 ">
+      <div className="md:col-span-4 md:mr-28 bg-gray-950  rounded-[5px] my-4 ">
         {active === "today"
           ? todayMatches
           : active === "tomorrow"
