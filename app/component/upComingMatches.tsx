@@ -3,14 +3,6 @@ import { ArrowBigDownDashIcon, ChevronDown } from "lucide-react";
 export default function UpcomingMatches({ upcoming }: { upcoming: any }) {
   return (
     <div>
-      {/* <div className="flex items-center gap-4 mb-8">
-        <img
-          className="w-10 h-10 object-cover"
-          src={upcoming.competition.emblem}
-          alt={upcoming.competition.name}
-        />
-        <ChevronDown />
-      </div> */}
       {upcoming.matches.map((fixture: any) => (
         <div key={fixture.id}>
           <div className="flex justify-between items-center w-full py-2 ">

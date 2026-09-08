@@ -1,4 +1,14 @@
-import { leagueMatch, liveFixtures } from "../data/data";
+import { ChevronDown } from "lucide-react";
+import LiveMatch from "../component/livematch";
+import { leagueMatch } from "../data/data";
+import { LeagueData } from "../page";
+
+function getTodayMatches(data: any, leagueCode: String) {
+  if (!data) return { matches: [] };
+  return {
+    matches: data.matches.filter((m: any) => m.competition.code === leagueCode),
+  };
+}
 
 export default async function LiveFixtures() {
   const today = new Date();
@@ -10,61 +20,63 @@ export default async function LiveFixtures() {
   const dateToToday = todayend.toISOString().split("T")[0];
   const liveMatches = await leagueMatch(dateFromToday, dateToToday);
   console.log("Live Matches:", liveMatches);
+
+  const PltodayMatches = getTodayMatches(liveMatches, "PL");
+  const LigatodayMatches = getTodayMatches(liveMatches, "PD");
+  const SerieAtodayMatches = getTodayMatches(liveMatches, "SA");
+  const ChampiontodayMatches = getTodayMatches(liveMatches, "CL");
+
+  const AllTodayMatches: any[] = [
+    { data: PltodayMatches, label: "Premier League" },
+    { data: LigatodayMatches, label: "Laliga" },
+    { data: SerieAtodayMatches, label: "Serie A" },
+    { data: ChampiontodayMatches, label: "Champions League" },
+  ];
+
+  console.log("AllMAtches", AllTodayMatches);
   return (
     <div>
       {liveMatches && liveMatches.matches.length === 0 ? (
         <div>No live today</div>
       ) : (
-        <div>
-          {liveMatches.matches.map((match: any) => (
-            <div key={match.id}>
-              <div className="flex justify-between items-center w-full py-2 ">
-                <div className="flex flex-col items-start gap-4">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={match.homeTeam.crest}
-                      className="w-6 h-6"
-                      alt={match.homeTeam.name}
-                      loading="lazy"
-                    />
-                    <h2>{match.homeTeam.name}</h2>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <img
-                      className="w-6 h-6"
-                      src={match.awayTeam.crest}
-                      alt={match.awayTeam.name}
-                      loading="lazy"
-                    />
-                    <h2>{match.awayTeam.name}</h2>
-                  </div>
-                </div>
-                <div className="text-right ">
-                  {match.status === "TIMED" ? (
-                    <p>
-                      {new Date(match.utcDate).toLocaleTimeString([], {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
-                  ) : match.status === "FINISHED" ? (
-                    <div className="flex flex-col items-end gap-3">
-                      <p>{match.score.fullTime.home}</p>
-                      <p>{match.score.fullTime.away}</p>
-                    </div>
-                  ) : match.status === "LIVE" ? (
-                    <div className="flex flex-col items-end gap-3">
-                      <p>{match.score.fullTime.home}</p>
-                      <p>{match.score.fullTime.away}</p>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-              <hr className="text-gray-800" />
-            </div>
-          ))}
-        </div>
+        <RenderAllMatches AllTodayMatches={AllTodayMatches} />
       )}
+    </div>
+  );
+}
+
+function renderMatches(data: any, label: string) {
+  if (!data?.matches) {
+    return <div>Unable to load matches</div>;
+  }
+  if (data.matches.length === 0) {
+    return <div>No matches in {label}</div>;
+  } else {
+    return (
+      <div>
+        <div className="flex items-center gap-4 mb-8 mt-4 bg-neutral-300 p-3 rounded-2xl">
+          <img
+            className="w-15 h-15 object-cover"
+            src={data.matches[0]?.competition.emblem}
+            alt={data.matches[0]?.competition.name}
+          />
+          <ChevronDown />
+        </div>
+        <LiveMatch livematches={data} />
+      </div>
+    );
+  }
+}
+function RenderAllMatches({
+  AllTodayMatches,
+}: {
+  AllTodayMatches: LeagueData[];
+}) {
+  return (
+    <div>
+      {AllTodayMatches.map((a: any) => (
+        <div key={a.label}>{renderMatches(a.data, a.label)} </div>
+      ))}
     </div>
   );
 }

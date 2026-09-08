@@ -3,8 +3,8 @@ import { leagueMatch, leagues } from "./data/data";
 import FilterDisplay from "./ui/filter";
 import ListLeagues from "./ui/ListLeagues";
 import LiveFixtures from "./ui/liveFitxtures";
-import Upcoming from "./ui/upComingMatches";
-import UpcomingMatches from "./ui/upComingMatches";
+import Upcoming from "./component/upComingMatches";
+import UpcomingMatches from "./component/upComingMatches";
 
 function renderMatches(data: any, label: string) {
   if (!data?.matches) {
@@ -29,7 +29,7 @@ function renderMatches(data: any, label: string) {
   }
 }
 
-interface LeagueData {
+export interface LeagueData {
   data: any[];
   label: String;
 }
@@ -62,7 +62,7 @@ export default async function Home() {
   } catch (error) {
     console.error("Error fetching matches:", error);
   }
-  function getLeague1week(leagueCode: string, data: any) {
+  function getLeague1week(leagueCode: String, data: any) {
     if (!data) return { matches: [] };
     return {
       matches: data.matches.filter(
@@ -81,8 +81,6 @@ export default async function Home() {
     { data: SA1week, label: "Serie A" },
     { data: CL1week, label: "Champion League" },
   ];
-  console.log("PL1week:", PL1week);
-  console.log("leagues:", leagues);
 
   return (
     <div className="bg-gray-900 text-white min-h-screen px-3">
