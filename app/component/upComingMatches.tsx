@@ -30,7 +30,7 @@ export default function UpcomingMatches({ upcoming }: { upcoming: any }) {
               <p>{new Date(fixture.utcDate).toDateString()}</p>
             </div>
           </div>
-          <hr className="text-gray-800" />
+          <hr className="text-gray-800 mb-5 " />
         </div>
       ))}
     </div>

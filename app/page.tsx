@@ -5,6 +5,13 @@ import ListLeagues from "./ui/ListLeagues";
 import LiveFixtures from "./ui/liveFitxtures";
 import Upcoming from "./component/upComingMatches";
 import UpcomingMatches from "./component/upComingMatches";
+import plTheme from "../public/image/PremierLeagueTheme.jpeg";
+import serieATheme from "../public/image/serie A theme.jpeg";
+import budesligaTheme from "../public/image/bundesligaTheme.jpeg";
+import laligaTheme from "../public/image/laligaTheme.jpeg";
+import ligueOneTheme from "../public/image/LigueOneTheme.jpeg";
+import championsLeagueTheme from "../public/image/champions League Theme.jpeg";
+import Image from "next/image";
 
 function renderMatches(data: any, label: string) {
   if (!data?.matches) {
@@ -15,9 +22,24 @@ function renderMatches(data: any, label: string) {
   } else {
     return (
       <div>
-        <div className="flex items-center gap-4 mb-8 mt-4 bg-neutral-300 p-3 ">
+        <div className=" relative flex items-center w-[100%] h-[20%] gap-4 mb-8 mt-4 p-3 ">
+          <Image
+            src={
+              data.matches[0]?.competition.code === "PL"
+                ? plTheme
+                : data.matches[0]?.competition.code === "SA"
+                  ? serieATheme
+                  : data.matches[0]?.competition.code === "CL"
+                    ? championsLeagueTheme
+                    : data.matches[0]?.competition.code === "PD"
+                      ? laligaTheme
+                      : laligaTheme
+            }
+            alt=""
+            className="w-full h-[100%] absolute top-0 right-0 z-1 object-cover"
+          />
           <img
-            className="w-15 h-15 object-cover"
+            className="w-15 h-15 object-cover z-2"
             src={data.matches[0]?.competition.emblem}
             alt={data.matches[0]?.competition.name}
           />

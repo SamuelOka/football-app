@@ -45,7 +45,7 @@ export default function LiveMatch({ livematches }: { livematches: any }) {
               ) : null}
             </div>
           </div>
-          <hr className="text-gray-800" />
+          <hr className="text-gray-800 mb-5" />
         </div>
       ))}
     </div>
