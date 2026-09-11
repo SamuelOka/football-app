@@ -2,7 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { leagueMatch, leagues } from "./data/data";
 import FilterDate from "./ui/filterDate";
 import ListLeagues from "./ui/ListLeagues";
-import LiveFixtures from "./ui/liveFitxtures";
+
 import Upcoming from "./component/upComingMatches";
 import UpcomingMatches from "./component/upComingMatches";
 import plTheme from "../public/image/PremierLeagueTheme.jpeg";
