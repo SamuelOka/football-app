@@ -53,7 +53,7 @@ export default async function LiveFixtures() {
   );
 }
 
-function renderMatches(data: any, label: string) {
+function renderMatchesLive(data: any, label: string) {
   if (!data?.matches) {
     return <div>Unable to load matches</div>;
   }
