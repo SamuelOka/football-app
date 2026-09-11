@@ -19,7 +19,11 @@ function RenderMatches({ data, label }: { data: any; label: string }) {
     return <div>Unable to load matches</div>;
   }
   if (data.matches.length === 0) {
-    return <div>no {label} matches</div>;
+    return (
+      <div className="p-2">
+        <p>No {label} matches</p>
+      </div>
+    );
   } else {
     return (
       <div>
@@ -156,27 +160,6 @@ export default async function Home() {
   const PD1week = getLeagueMatches("PD", Matches1week);
   const SA1week = getLeagueMatches("SA", Matches1week);
   const CL1week = getLeagueMatches("CL", Matches1week);
-
-  const MatchesInWeek: any[] = [
-    { data: PL1week, label: "Premeier League" },
-    { data: PD1week, label: "Laliga" },
-    { data: SA1week, label: "Serie A" },
-    { data: CL1week, label: "Champion League" },
-  ];
-
-  const LeagueMatchesTomorrow: any[] = [
-    { data: PLTomorrow, label: "Premeier League" },
-    { data: PDTomorrow, label: "Laliga" },
-    { data: SATomorrow, label: "Serie A" },
-    { data: CLTomorrow, label: "Champion League" },
-  ];
-
-  const LeagueMatchesToday: any[] = [
-    { data: PLToday, label: "Premeier League" },
-    { data: PDToday, label: "Laliga" },
-    { data: SAToday, label: "Serie A" },
-    { data: CLToday, label: "Champion League" },
-  ];
 
   return (
     <div className="bg-gray-900 text-white min-h-screen px-3">

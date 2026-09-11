@@ -8,9 +8,9 @@ export default function FilterDate({ matches }: { matches: MatchesbyLeague }) {
   const [activeTime, setActiveTime] = useState<Timeline>("today");
   const [activeLeague, setActiveLeague] = useState<LeagueCode>("PL");
   const activeStyle =
-    "py-2 px-4 rounded-[5px] text-[12px] bg-red-500 text-white w-fit my-4 cursor-pointer";
+    "py-2 px-4 rounded-[5px] text-[12px] bg-red-500 text-white w-fit my-4 cursor-pointer w-fit";
   const inactiveStyle =
-    "py-2 px-4 rounded-[5px] text-[12px] bg-neutral-800 text-white w-fit my-4 cursor-pointer";
+    "py-2 px-4 rounded-[5px] text-[12px] bg-neutral-800 text-white w-fit my-4 cursor-pointer w-fit ";
   const Timeframe: { key: Timeline; label: string }[] = [
     { key: "today", label: "Today" },
     { key: "tomorrow", label: "Tomorrow" },
@@ -35,7 +35,8 @@ export default function FilterDate({ matches }: { matches: MatchesbyLeague }) {
           </div>
         ))}
       </div>
-      <div className="flex gap-4">
+      <hr className="my-5 text-neutral-500" />
+      <div className="flex gap-3 w-full overflow-x-auto whitespace-nowrap  [scrollbar-width:none]">
         {Leagues.map((t) => (
           <div
             key={t.key}
